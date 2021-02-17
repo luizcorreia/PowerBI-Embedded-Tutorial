@@ -1,0 +1,213 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em recto e verso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+%\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[rm]{roboto}
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+
+% ---
+% Pacotes adicionais, usados no anexo do modelo de folha de identificação
+% ---
+\usepackage{multicol}
+\usepackage{multirow}
+% ---
+	
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Power Bi Embedded}
+\autor{Luiz Correia}
+\local{Brasil}
+\data{17/02/2021}
+\tipotrabalho{Relatório técnico}
+
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={\imprimirpreambulo},
+	pdfcreator={LaTeX with abnTeX2},
+	pdfkeywords={abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
+	colorlinks=true,       		% false: boxed links; true: colored links
+	linkcolor=blue,          	% color of internal links
+	citecolor=blue,        		% color of links to bibliography
+	filecolor=magenta,      		% color of file links
+	urlcolor=blue,
+	bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+
+\begin{document}
+	
+	% Seleciona o idioma do documento (conforme pacotes do babel)
+	%\selectlanguage{english}
+	\selectlanguage{brazil}
+	
+	% Retira espaço extra obsoleto entre as frases.
+	\frenchspacing 
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS PRÉ-TEXTUAIS
+	% ----------------------------------------------------------
+	% \pretextual
+	
+	% ---
+	% Capa
+	% ---
+	\imprimircapa
+	% ---
+	
+	% ---
+	% Folha de rosto
+	% (o * indica que haverá a ficha bibliográfica)
+	% ---
+	\imprimirfolhaderosto*
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS TEXTUAIS
+	% ----------------------------------------------------------
+	\textual
+	
+	% ---
+	% inserir o sumario
+	% ---
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage
+	% ---
+	
+	\chapter*[Introdução]{Introdução}
+	\addcontentsline{toc}{chapter}{Introdução}
+	
+O Power BI Embedded é uma solução de plataforma como serviço (PaaS) no Microsoft Azure que oferece uma coleção de interfaces para permitir a integração de conteúdo do Power BI em aplicativos e sites personalizados.
+
+Você pode usar todos os recursos, como filtragem cruzada, Row Level Security e Q\&A. Para criar relatórios, você pode usar o Power BI Desktop normal. No entanto, você não está mais limitado a publicar seus relatórios no serviço Power BI. Além disso, o Power BI Embedded permite que você os integre em seus próprios aplicativos da web e móveis. Não apenas para sua organização, mas também para usuários terceirizados. Eles nem mesmo precisam de uma licença do Power BI, mas podem usar seu próprio sistema de autenticação, que pode ser combinado com a poderosa API do Power BI Embedded.
+
+	\chapter{Método de autenticação}
+	\chapter{Registrar um aplicativo no Azure AD}
+	\chapter{Criar um workspace do Power Bi}
+	\chapter{Criar e publicar um relatório do Power BI}
+	\chapter{Obter valores de parâmetros de inserção}
+	\chapter{Acesso à API da entidade de serviço}
+	\chapter{Habilitar o acesso ao workspace}
+	\chapter{Inserir o contéudo}
+	
+	\chapter*[Projetos]{Projetos}
+	
+	\begin{enumerate}
+		\item \textbf{Banco de Dados MongoDB} \\
+			O banco de dados usado atualmente está hospedado no Atlas, o plano usado está sendo free, o que está acarretando certa instabilidade no sistema do Locker por ficar indisponível no intervalo de reinício das bases de dados. \\
+			Seria preciso uma análise para a troca para bancos relacionais ou mesmo uma assinatura no próprio Atlas visto que o banco compatível ao MongoDB na AWS é extremamente caro.
+		\item \textbf{Desenvolvimento do App MeuLocker em versão PWA} \\
+			\textit{Definição}: Segundo a Wikipédia: Progressive Web App (PWA) é um termo usado para denotar aplicativos da web que usam as últimas tecnologias da web. Os aplicativos da web progressivos são páginas web (ou sites) tecnicamente regulares, mas podem aparecer ao usuário como aplicativos tradicionais ou aplicativos móveis (nativos). Este novo tipo de aplicativo tenta combinar os recursos oferecidos pela maioria dos navegadores modernos com os benefícios da experiência móvel.
+			
+			Em resumo, é uma aplicação web com tecnologias que permitem termos a experiência de uso muito próxima da oferecida pelos mobile apps. As funcionalidades que estas tecnologias nos permitem são:
+			
+			O sistema PWA poderia ser de grande valia na estrutura meu locker por não criar um problema ao usuário tento que instalar um novo aplicativo no celular, alguns problemas ao pedir ao cliente para instalar um app:
+			\begin{itemize}
+			\item Você criou uma rota de fuga para o seu cliente, ele estava atrás de um determinado serviço e ao invés disso recebeu um novo problema, deve instalar um app.
+			\item Alguns clientes desistem de cara de instalar o app e não voltam mais.
+			\item Outros clientes vão clicar no link da loja de aplicativos para instalar. Mas dependendo do tamanho do app, o cliente pode desistir. Ele pode estar no 3g / 4g com banda limitada ou não ter espaço em seu Galaxy Y/J5, Moto G, etc.
+			\end{itemize}
+		\item \textbf{Migração dos Servidores do MeuLocker} \\
+			Os servidores se encontram hoje em máquina windows rodando ao mesmo tempo interface de gerência, servidor e banco de dados, o servidor se encontra sem nenhuma proteção contra falhas ou qualquer rotina de backup.
+		\item \textbf{Sistema de Gerência} \\
+			O sistema de gerência encontra-se em fase de finalização e perfumaria para que posso funcionar e otimizar o tempo de consulta de todos os lockers em funcionamento pela empresa.
+		\item \textbf{Sistema de Pagamento com integração com a Magento} \\
+			Integração da plataforma da Magento ao e-commerces ligados ao Locker
+		\item \textbf{Sistema de Pagamento com integração com a VTex} \\
+			Plataforma de comércio unificado para negócios unificados.
+			Seria analisado junto a Vtex a Logistics API, e integração com o Locker
+	
+		
+	\end{enumerate}
+	
+\end{document}
